@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>OAuth callback</title>
+</head>
+<body>
+<h1>已回到回调页</h1>
+<p>如果这是特斯拉授权后的跳转，请把浏览器地址栏里的完整链接复制回给 Muse。不要把链接发给别人。</p>
+<p id="info"></p>
+<script>
+var p = new URLSearchParams(location.search);
+var code = p.get("code"), state = p.get("state"), err = p.get("error");
+var el = document.getElementById("info");
+if (err) { el.textContent = "授权出错：" + err; }
+else if (code) { el.textContent = "已收到授权码（请直接复制地址栏链接，不要只复制这里的码）。state：" + (state || ""); }
+else { el.textContent = "没有收到授权码，请重新从特斯拉授权页开始。"; }
+</script>
+</body>
+</html>
